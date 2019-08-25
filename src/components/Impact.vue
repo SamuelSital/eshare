@@ -57,7 +57,7 @@ export default {
     grid-gap: 5px;
 
     .impact-number {
-      background: #00ffcc;
+      background: $primary;
       box-shadow: 0 2px 12px -5px #00e7b8;
       border-radius: 5px;
       padding: 30px;
@@ -93,7 +93,7 @@ export default {
     }
 
     .impact-number:hover {
-      background-color: $primary-dark;
+      background-color: darken($primary, 10%);
     }
   }
 }

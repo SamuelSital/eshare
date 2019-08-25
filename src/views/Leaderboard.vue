@@ -7,7 +7,7 @@
         <div class="cell">
           <div class="header">
             <span class="header-value"></span>
-            <span class="header-value">Name</span>
+            <span class="header-value">Producer</span>
             <span class="header-value">Produced(kWh)</span>
             <span class="header-value">Consumed(kWh)</span>
             <span class="header-value">Consumers</span>
@@ -42,36 +42,6 @@ export default {
   data() {
     return {
       list: [
-        { name: 'Donald Trump', energy_produced: 300, energy_consumed: 200, consumers: 6 },
-        { name: 'Donald Trump', energy_produced: 200, energy_consumed: 100, consumers: 6 },
-        { name: 'Donald Trump', energy_produced: 150, energy_consumed: 30, consumers: 4 },
-        { name: 'Donald Trump', energy_produced: 120, energy_consumed: 20, consumers: 3 },
-        { name: 'Donald Trump', energy_produced: 100, energy_consumed: 30, consumers: 2 },
-        { name: 'Donald Trump', energy_produced: 90, energy_consumed: 30, consumers: 1 },
-        { name: 'Donald Trump', energy_produced: 300, energy_consumed: 200, consumers: 6 },
-        { name: 'Donald Trump', energy_produced: 200, energy_consumed: 100, consumers: 6 },
-        { name: 'Donald Trump', energy_produced: 150, energy_consumed: 30, consumers: 4 },
-        { name: 'Donald Trump', energy_produced: 120, energy_consumed: 20, consumers: 3 },
-        { name: 'Donald Trump', energy_produced: 100, energy_consumed: 30, consumers: 2 },
-        { name: 'Donald Trump', energy_produced: 90, energy_consumed: 30, consumers: 1 },
-        { name: 'Donald Trump', energy_produced: 300, energy_consumed: 200, consumers: 6 },
-        { name: 'Donald Trump', energy_produced: 200, energy_consumed: 100, consumers: 6 },
-        { name: 'Donald Trump', energy_produced: 150, energy_consumed: 30, consumers: 4 },
-        { name: 'Donald Trump', energy_produced: 120, energy_consumed: 20, consumers: 3 },
-        { name: 'Donald Trump', energy_produced: 100, energy_consumed: 30, consumers: 2 },
-        { name: 'Donald Trump', energy_produced: 90, energy_consumed: 30, consumers: 1 },
-        { name: 'Donald Trump', energy_produced: 300, energy_consumed: 200, consumers: 6 },
-        { name: 'Donald Trump', energy_produced: 200, energy_consumed: 100, consumers: 6 },
-        { name: 'Donald Trump', energy_produced: 150, energy_consumed: 30, consumers: 4 },
-        { name: 'Donald Trump', energy_produced: 120, energy_consumed: 20, consumers: 3 },
-        { name: 'Donald Trump', energy_produced: 100, energy_consumed: 30, consumers: 2 },
-        { name: 'Donald Trump', energy_produced: 90, energy_consumed: 30, consumers: 1 },
-        { name: 'Donald Trump', energy_produced: 300, energy_consumed: 200, consumers: 6 },
-        { name: 'Donald Trump', energy_produced: 200, energy_consumed: 100, consumers: 6 },
-        { name: 'Donald Trump', energy_produced: 150, energy_consumed: 30, consumers: 4 },
-        { name: 'Donald Trump', energy_produced: 120, energy_consumed: 20, consumers: 3 },
-        { name: 'Donald Trump', energy_produced: 100, energy_consumed: 30, consumers: 2 },
-        { name: 'Donald Trump', energy_produced: 90, energy_consumed: 30, consumers: 1 },
       ]
     }
   },
@@ -85,7 +55,22 @@ export default {
         'background-color': `hsl(${hue}deg, 100%, 95%)`,
       }
     }
+  },
+  mounted() {
+    fetch('http://35.204.156.137/leaderboard')
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(data => {
+        const list = Object.keys(data).map(k => ({
+          name: k,
+          energy_produced: data[k][0].toFixed(2),
+          energy_consumed: data[k][1].toFixed(2),
+          consumers: data[k][2],
+        }));
+        list.sort((a, b) => b.energy_produced - a.energy_produced);
+        this.list = list;
+      })
   }
+
 }
 </script>
 
@@ -104,7 +89,7 @@ export default {
   font-size: 22px;
   color: $gray3;
 }
-$row: 30px 1fr 1fr 1fr 1fr;
+$row: 30px 2fr 1fr 1fr 1fr;
 
 .header {
   display: grid;
@@ -132,13 +117,17 @@ $row: 30px 1fr 1fr 1fr 1fr;
   }
 
   .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: hsl(217, 23%, 94%);
-    color: $gray3;
-    padding: 8px;
-    font-size: 0.7em;
+    color: $gray2;
+    width: 45px;
+    height: 45px;
+    font-size: 0.8em;
     font-weight: 600;
     border-radius: 100%;
-    margin-right: 10px;
+    margin-right: 15px;
   }
 }
 

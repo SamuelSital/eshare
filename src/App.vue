@@ -94,7 +94,7 @@ body {
     }
 
     a:hover {
-      color: $secondary;
+      color: $primary;
       // transform: translate(3px, 0px);
     }
 
@@ -109,7 +109,7 @@ body {
     }
 
     .router-link-exact-active {
-      color: $secondary;
+      color: $primary;
       // background-color: $gray1;
       // border-left: 4px solid $secondary;
     }

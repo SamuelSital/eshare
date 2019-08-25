@@ -2,14 +2,19 @@
   <div class="production">
     <span class="title">Production</span>
     <span class="sub-title">Energy production this month</span>
-    <div class="cell">
+    <div class="cell" v-if="chartdata">
       <BarChart :height="233" :chartdata="chartdata" />
+    </div>
+    <div class="loading" v-else>
+      <Loader />
     </div>
   </div>
 </template>
 
 <script>
 import BarChart from './BarChart';
+import Loader from './Loader';
+import { Promise } from 'q';
 
 export default {
   name: 'Production',
@@ -17,30 +22,54 @@ export default {
   },
   components: {
     BarChart,
+    Loader,
   },
   data() {
-    const data = [];
-    const labels = [];
-    for (let i = 0; i < 31; i++) {
-      data.push(Math.random() * 100);
-      labels.push(i + 1);
-    }
     return {
-      chartdata: {
+      chartdata: null
+    };
+  },
+  methods: {
+    showData(labels, data) {
+      this.chartdata = {
         labels: labels,
         datasets: [
           {
             label: 'Production',
-            backgroundColor: '#00FFCC',
-            borderColor: '#00FFCC',
+            backgroundColor: '#00D6CF',
+            borderColor: '#00D6CF',
             data: data,
           }
         ]
       }
-    };
+    }
   },
 
   mounted() {
+    const test = false;
+    if (test) {
+      let data = [];
+      let labels = [];
+      for (let i = 0; i < 31; i++) {
+        data.push(Math.random() * 100);
+        labels.push(i + 1);
+      }
+      this.showData(labels, data);
+    }
+    fetch('http://35.204.156.137/producer_history')
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(res => {
+        let production = res.reverse().slice(0, 31).reverse();
+        let data = [];
+        let labels = [];
+        production.forEach(([time, value]) => {
+          labels.push(new Date(time).getDate())
+          data.push(value);
+        })
+        console.log(labels)
+        // console.table(production);
+        this.showData(labels, data);
+      });
   }
 }
 </script>
@@ -50,6 +79,7 @@ export default {
 .production {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 .cell {
   background: #ffffff;
@@ -57,5 +87,18 @@ export default {
   box-shadow: 0 5px 11px -3px #eceff3;
   border-radius: 5px;
   padding: 20px;
+}
+
+.loading {
+  background: #ffffff;
+  border: 1px solid #f5f9ff;
+  box-shadow: 0 5px 11px -3px #eceff3;
+  border-radius: 5px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $gray2;
+  font-size: 1.6em;
 }
 </style>
