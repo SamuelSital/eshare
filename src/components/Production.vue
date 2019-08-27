@@ -6,7 +6,7 @@
       <BarChart :height="233" :chartdata="chartdata" />
     </div>
     <div class="loading" v-else>
-      <Loader />
+      <i class="fa fa-spin fa-circle-notch fa-1x" /> Loading...
     </div>
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
         data.push(Math.random() * 100);
         labels.push(i + 1);
       }
-      this.showData(labels, data);
+      return this.showData(labels, data);
     }
     fetch('http://35.204.156.137/producer_history')
       .then(res => res.ok ? res.json() : Promise.reject())
@@ -66,8 +66,6 @@ export default {
           labels.push(new Date(time).getDate())
           data.push(value);
         })
-        console.log(labels)
-        // console.table(production);
         this.showData(labels, data);
       });
   }
@@ -99,6 +97,9 @@ export default {
   justify-content: center;
   align-items: center;
   color: $gray2;
-  font-size: 1.6em;
+  font-size: 1.2em;
+  i {
+    margin-right: 5px;
+  }
 }
 </style>

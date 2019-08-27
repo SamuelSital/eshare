@@ -58,7 +58,7 @@ export default {
 
     .impact-number {
       background: $primary;
-      box-shadow: 0 2px 12px -5px #00e7b8;
+      box-shadow: 0 2px 12px -5px #00d6cf;
       border-radius: 5px;
       padding: 30px;
       transition: all 0.2s ease;

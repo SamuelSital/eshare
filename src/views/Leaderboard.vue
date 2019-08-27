@@ -86,7 +86,7 @@ export default {
 }
 
 .title {
-  font-size: 22px;
+  font-size: 28px;
   color: $gray3;
 }
 $row: 30px 2fr 1fr 1fr 1fr;
@@ -132,7 +132,8 @@ $row: 30px 2fr 1fr 1fr 1fr;
 }
 
 .row:nth-child(even) {
-  background-color: hsl(217, 23%, 98%);
+  background-color: hsl(217, 33%, 99%);
+  // background-color: hsl(217, 23%, 99%);
 }
 
 .row:hover {

@@ -67,7 +67,7 @@ $table: 2fr 1fr 1fr;
 }
 
 .list-item:nth-child(odd) {
-  background-color: hsl(217, 23%, 99%);
+  background-color: hsl(217, 33%, 99%);
 }
 
 .list-item {
