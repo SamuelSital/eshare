@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Overview from './views/Overview.vue'
 import Leaderboard from './views/Leaderboard.vue'
+import Progress from './views/Progress.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/leaderboard',
       name: 'Leaderboard',
       component: Leaderboard
+    },
+    {
+      path: '/progress',
+      name: 'Progress',
+      component: Progress
     },
     {
       path: '/about',
