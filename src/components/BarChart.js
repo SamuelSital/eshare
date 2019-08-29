@@ -141,7 +141,13 @@ export default {
     const options = {
       responsive: true,
       maintainAspectRatio: false,
+      hover: {
+        mode: 'nearest',
+        intersect: true
+      },
       tooltips: {
+        mode: 'index',
+        intersect: false,
         callbacks: {
           label: (tooltipItem, data) => {
             return parseFloat(tooltipItem.value).toFixed(1) + ' kWh';
