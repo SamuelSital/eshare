@@ -23,30 +23,39 @@
 
 
 
-          <div id="progress-wrapper">
-            <div id="progress" />
+          <div class="progress-wrapper">
+            <div class="progress">September</div>
+            
+            <h4>11 Supporters &nbsp;&nbsp;&nbsp;&nbsp; 16 Recipients &nbsp;&nbsp;&nbsp;&nbsp; 62% coverage</h4>
           </div>
           
-          <h4>6 Supporters &nbsp;&nbsp;&nbsp;&nbsp; 62% coverage</h4>
-
-          <p>
-            <!-- There are <b>6</b> donators in your neighborhood. -->
-            <!-- <br /> -->
-            In order to match the energy bills for the energy poor housholds in your neighborhood, <b>3</b> additional donators would be needed.
-          </p>
+          <br />
+          <!-- <h3>Matching Energy Demand</h3> -->
+          <p><b>3 more donators are needed </b> in order to match the energy bills for the energy poor housholds in your neighborhood.</h4>
 
           <p>
             Do you know any like-minded residents in your neighborhood, in posession of solar panels?
-
             You can invite them with your <b>referral link</b>:
           </p>
             
             <div style="text-align: center">
-              <a href="">www.enershare/referral?id=8DSfdLdska3</a> &nbsp;<button>Copy</button>
+              <a href="">www.enershare.eu/referral?id=8DSfdLdska3</a> &nbsp;<span class="copyButton"> <i class="fa fa-copy"></i> Copy</span>
             </div>
-          <p>
-            Let's solve energy poverty together!
-          </p>
+          <!-- <p>Let's solve energy poverty together!</p> -->
+
+          <h2>Predictions</h2>
+
+          <div class="progress-wrapper prediction">
+            <div class="progress" id="prediction1">November</div>
+            <h4>14 Supporters &nbsp;&nbsp;&nbsp;&nbsp; 19 Recipients &nbsp;&nbsp;&nbsp;&nbsp; 67% coverage</h4>
+          </div>
+
+          <br />
+
+           <div class="progress-wrapper prediction">
+            <div class="progress" id="prediction2">December</div>
+            <h4>16 Supporters &nbsp;&nbsp;&nbsp;&nbsp; 21 Recipients &nbsp;&nbsp;&nbsp;&nbsp; 74% coverage</h4>
+          </div>
 
         </div>
       </div>
@@ -129,21 +138,91 @@ export default {
   font-weight: 500;
 }
 
-#progress {
-  width: 66%;
-  height: 100%;
-  background-color: #00ffcc;
+@keyframes growProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }
 
-#progress-wrapper {
+.progress {
+  width: 0%;
+  height: 100%;
+  background-color: #00d6cf;
+  animation: 1s ease 0s forwards growProgress;
+
+  overflow: hidden;
+  color: white;
+  font-weight: 900;
+  text-indent: 16px;
+  line-height: 48px;
+
+  max-width: 62%;
+
+  &#prediction1 {
+    background-color: #69d8d4;
+    max-width: 67%;
+    animation-delay: 0.2s;
+  }
+  &#prediction2 {
+    background-color: #84dbd8;
+    max-width: 74%;
+    animation-delay: 0.4s;
+  }
+}
+
+h4 {
+  font-weight: 600;
+}
+
+.progress-wrapper {
   width: 400px;
   background-color: #cae0dc;
   margin: 50px;
   height: 50px;
+  margin-top: 10px;
 }
 
-h2 {
-
+.copyButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+	background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+	background-color:#f9f9f9;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-size:12px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.copyButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+	background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+	background-color:#e9e9e9;
+}
+.copyButton:active {
+	position:relative;
+	top:1px;
 }
 
 </style>
