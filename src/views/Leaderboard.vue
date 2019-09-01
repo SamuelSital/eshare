@@ -4,43 +4,89 @@
       <div class="container-cell cell1">
         <span class="title">Leaderboard</span>
         <span class="sub-title"></span>
-        <div class="cell">
-          <div class="header">
-            <span class="header-value"></span>
-            <span class="header-value">Producer</span>
-            <span class="header-value">Produced(kWh)</span>
-            <span class="header-value">Consumed(kWh)</span>
-            <span class="header-value">Consumers</span>
-          </div>
-          <div
-            :key="item.energy_produced"
-            v-for="(item, i) in list"
-            class="row"
-          >
-            <span class="row-value number">{{ i + 1 }}</span>
-            <span class="row-value">
-              <div class="circle">
-                {{ getInitials(item.name) }}
-              </div>
-              <span>{{ item.name }}</span>
-            </span>
-            <span class="row-value">{{ item.energy_produced }}</span>
-            <span class="row-value">{{ item.energy_consumed }}</span>
-            <span class="row-value">{{ item.consumers }}</span>
+
+        <switch-button v-model="isNational" preLabel="National">Local</switch-button>
+
+        <div v-if="isNational">
+          <iframe src="https://public.tableau.com/shared/5YKTG4DTY?:display_count=yes&:showVizHome=no&:toolbar=no" height="300" style="width:100%;margin-bottom:-24px;z-index:0" frameborder="0" ></iframe>
+
+          <div class="cell" style="z-index:1;position: relative;">
+            <div class="header">
+              <!-- Todo: Showing this kind of data in a leaderboard doesn't make a lot of sense... -->
+              <span class="header-value"></span>
+              <span class="header-value">Producer</span>
+              <span class="header-value">Produced(kWh)</span>
+              <span class="header-value">Consumed(kWh)</span>
+              <span class="header-value">Consumers</span>
+            </div>
+            <div
+              :key="item.energy_produced"
+              v-for="(item, i) in list"
+              class="row"
+            >
+              <span class="row-value number">{{ i + 1 }}</span>
+              <span class="row-value">
+                <div class="circle">
+                  {{ getInitials(item.name) }}
+                </div>
+                <span>{{ item.name }}</span>
+              </span>
+              <span class="row-value">{{ item.energy_produced }}</span>
+              <span class="row-value">{{ item.energy_consumed }}</span>
+              <span class="row-value">{{ item.consumers }}</span>
+            </div>
           </div>
         </div>
+
+        <div v-else>
+          <iframe src="https://public.tableau.com/views/4PPpostcodevlakkennagemeentelijkeherindeling2018/Sheet1?:display_count=yes&:showVizHome=no&:toolbar=no&:original_view=yes" height="300" style="width:100%;margin-bottom:-24px;z-index:0" frameborder="0" ></iframe>
+
+          <div class="cell" style="z-index:1;position: relative;">
+            <div class="header">
+              <span class="header-value"></span>
+              <span class="header-value">Zipcode</span>
+              <span class="header-value">Donators</span>
+              <span class="header-value">Recipients</span>
+              <span class="header-value">Coverage</span>
+            </div>
+            <div
+              :key="item.energy_produced"
+              v-for="(item, i) in list"
+              class="row"
+            >
+              <span class="row-value number">{{ i + 1 }}</span>
+              <span class="row-value">
+                <!-- <div class="circle">
+                  {{ getInitials(item.name) }}
+                </div> -->
+                <span>{{ getZipCode() }}</span>
+              </span>
+              <span class="row-value">{{ Math.round(item.energy_produced / 100) }}</span>
+              <span class="row-value">{{ Math.round(item.energy_consumed / 100) }}</span>
+              <span class="row-value">{{ Math.round( 100 * Math.min(item.energy_consumed / item.energy_produced), 100) }}%</span>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
+import SwitchButton from '../components/SwitchButton.vue';
+
 export default {
   name: 'Leaderboard',
   components: {
+    SwitchButton,
   },
   data() {
     return {
+      /** national/local leaderboard */
+      isNational: true,
       list: [
       ]
     }
@@ -54,6 +100,13 @@ export default {
       return {
         'background-color': `hsl(${hue}deg, 100%, 95%)`,
       }
+    },
+    getZipCode() {
+      let res = '';
+      for (let i = 0; i < 4; i++) {
+        res += Math.ceil(Math.random() * 9);
+      }
+      return res;
     }
   },
   mounted() {
