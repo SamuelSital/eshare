@@ -1,54 +1,40 @@
 <template>
   <div class="container">
-    <!-- <div class="container-row1">
-      <div class="container-cell cell1">
-        <h1>Thank you!</h1>
-        Thank you for being part of this platform.
-
-
-      </div>
-      
-      <div class="container-cell cell2">
-        
-      </div>
-    </div> -->
-
     <div class="container-row2">
       <div class="container-cell cell3">
         <!-- <Division /> -->
-        <div class="container-cell cell1">
-          <h1>€344 <span id="h1-small">of €550 raised this month</span></h1>
+        <h1 class="title">
+          €344 <span id="h1-small">of €550 raised this month</span>
+        </h1>
 
-          <!-- [oooooooooooooooo________] (this is a progress bar) -->
+        <!-- [oooooooooooooooo________] (this is a progress bar) -->
 
-
-
-          <div id="progress-wrapper">
-            <div id="progress" />
-          </div>
-          
-          <h4>6 Supporters &nbsp;&nbsp;&nbsp;&nbsp; 62% coverage</h4>
-
-          <p>
-            <!-- There are <b>6</b> donators in your neighborhood. -->
-            <!-- <br /> -->
-            In order to match the energy bills for the energy poor housholds in your neighborhood, <b>3</b> additional donators would be needed.
-          </p>
-
-          <p>
-            Do you know any like-minded residents in your neighborhood, in posession of solar panels?
-
-            You can invite them with your <b>referral link</b>:
-          </p>
-            
-            <div style="text-align: center">
-              <a href="">www.enershare/referral?id=8DSfdLdska3</a> &nbsp;<button>Copy</button>
-            </div>
-          <p>
-            Let's solve energy poverty together!
-          </p>
-
+        <div id="progress-wrapper">
+          <div id="progress" />
         </div>
+
+        <h4>6 Supporters &nbsp;&nbsp;&nbsp;&nbsp; 62% coverage</h4>
+
+        <p>
+          <!-- There are <b>6</b> donators in your neighborhood. -->
+          <!-- <br /> -->
+          In order to match the energy bills for the energy poor housholds in
+          your neighborhood, <b>3</b> additional donators would be needed.
+        </p>
+
+        <p>
+          Do you know any like-minded residents in your neighborhood, in
+          posession of solar panels? You can invite them with your
+          <b>referral link</b>:
+        </p>
+
+        <div class="link-wrapper">
+          <a class="link" href="">www.enershare/referral?id=8DSfdLdska3</a>
+          <div class="link-copy" href="#"><i class="fa fa-copy"></i></div>
+        </div>
+        <p>
+          Let's solve energy poverty together!
+        </p>
       </div>
       <div class="container-cell cell4">
         <!-- <Consumers /> -->
@@ -58,23 +44,13 @@
 </template>
 
 <script>
-import Impact from '../components/Impact.vue';
-import Division from '../components/Division.vue';
-import Production from '../components/Production.vue';
-import Consumers from '../components/Consumers.vue';
 
 export default {
-  name: 'Report',
-  components: {
-    Impact,
-    Division,
-    Production,
-    Consumers
-  }
+  name: 'Progress',
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../global.scss";
 
 .container {
@@ -88,6 +64,7 @@ export default {
 .title {
   font-size: 22px;
   color: $gray3;
+  margin: 0;
   // font-weight: 500;
 }
 
@@ -96,32 +73,49 @@ export default {
   color: $gray2;
   margin-bottom: 10px;
 }
-.container-row1 {
-  display: flex;
-  background: transparent;
-  margin-bottom: 30px;
-
-  .cell {
-    background: #ffffff;
-    border: 1px solid #f5f9ff;
-    box-shadow: 0 5px 11px -3px #eceff3;
-    border-radius: 5px;
-  }
-
-  .cell1 {
-    background: transparent;
-  }
-
-  .cell2 {
-    width: 100%;
-    margin-left: 20px;
-  }
-}
 
 .container-row2 {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 1fr 450px;
+  color: $gray3;
+
+  .cell3 {
+    width: 100%;
+    margin-left: 20px;
+    background: #ffffff;
+    border: 1px solid #f5f9ff;
+    box-shadow: 0 5px 11px -3px #eceff3;
+    padding: 20px;
+    border-radius: 5px;
+
+    .link-wrapper {
+      text-align: center;
+      background-color: hsl(217deg, 00%, 97%);
+      border-radius: 5px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      .link {
+        text-decoration: none;
+        color: $gray3;
+      }
+
+      .link-copy {
+        padding: 15px;
+        border-radius: 3px;
+        margin-left: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: $gray21;
+        }
+      }
+    }
+  }
 }
 
 #h1-small {
@@ -132,18 +126,28 @@ export default {
 #progress {
   width: 66%;
   height: 100%;
-  background-color: #00ffcc;
+  background-color: $primary;
+  border-radius: 5px;
+  animation-name: progress-animation;
+  animation-duration: 0.8s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
 }
 
 #progress-wrapper {
   width: 400px;
-  background-color: #cae0dc;
+  background-color: hsl(217, 10%, 90%);
   margin: 50px;
   height: 50px;
+  border-radius: 5px;
 }
 
-h2 {
-
+@keyframes progress-animation {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 66%;
+  }
 }
-
 </style>

@@ -11,7 +11,7 @@
       </div>
       <div class="impact-number">
         <div class="impact-wrapper">
-          <span class="large-value">160</span>
+          <span class="large-value">300</span>
           <span class="small-label">kWh</span>
           <span class="label">Donated</span>
         </div>
