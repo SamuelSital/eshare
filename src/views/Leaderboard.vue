@@ -3,7 +3,7 @@
     <div class="container-row1">
       <div class="container-cell cell1">
         <span class="title">Leaderboard</span>
-        <span class="sub-title"></span>
+        <span class="sub-title">See your impact compared to other prosumers</span>
 
         <switch-button v-model="isNational" preLabel="National">Local</switch-button>
 

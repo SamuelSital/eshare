@@ -22,7 +22,6 @@ export default {
   },
   components: {
     BarChart,
-    Loader,
   },
   data() {
     return {

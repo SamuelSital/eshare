@@ -27,11 +27,11 @@ export default {
   data() {
     return {
       list: [
-        { name: 'Donald Trump', share: 4, energy: 53, id: 1, },
-        { name: 'Donald Trump', share: 4, energy: 53, id: 2, },
-        { name: 'Donald Trump', share: 4, energy: 53, id: 3, },
-        { name: 'Donald Trump', share: 4, energy: 53, id: 4, },
-        { name: 'Donald Trump', share: 4, energy: 53, id: 5, },
+        { name: 'Rachel Smith', share: 4, energy: 12, id: 1, },
+        { name: 'Ella Hardin', share: 21, energy: 63, id: 2, },
+        { name: 'Brian Stutzman', share: 34, energy: 102, id: 3, },
+        { name: 'Kara Phillips', share: 5, energy: 15, id: 4, },
+        { name: 'Richard Morgan', share: 36, energy: 108, id: 5, },
         // { name: 'Donald Trump', share: 4, energy: 53, id: 5, },
       ]
     }
