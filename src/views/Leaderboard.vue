@@ -3,12 +3,23 @@
     <div class="container-row1">
       <div class="container-cell cell1">
         <span class="title">Leaderboard</span>
-        <span class="sub-title">See your impact compared to other prosumers</span>
+        <span class="sub-title"
+          >See your impact compared to other prosumers</span
+        >
 
-        <switch-button v-model="isNational" preLabel="National">Local</switch-button>
+        <switch-button v-model="isNational" preLabel="National"
+          >Local</switch-button
+        >
 
         <div v-if="isNational">
-          <iframe src="https://public.tableau.com/shared/5YKTG4DTY?:display_count=yes&:showVizHome=no&:toolbar=no" height="300" style="width:100%;margin-bottom:-24px;z-index:0" frameborder="0" ></iframe>
+          <iframe
+            src="https://public.tableau.com/shared/5YKTG4DTY?:display_count=yes&:showVizHome=no&:toolbar=no"
+            height="300"
+            style="width:100%;margin-bottom: 0px;z-index:0"
+            frameborder="0"
+          ></iframe>
+
+          <div class="block"></div>
 
           <div class="cell" style="z-index:1;position: relative;">
             <div class="header">
@@ -16,7 +27,7 @@
               <span class="header-value"></span>
               <span class="header-value">Producer</span>
               <span class="header-value">Produced(kWh)</span>
-              <span class="header-value">Consumed(kWh)</span>
+              <span class="header-value">Donated(kWh)</span>
               <span class="header-value">Consumers</span>
             </div>
             <div
@@ -30,16 +41,24 @@
                   {{ getInitials(item.name) }}
                 </div>
                 <span>{{ item.name }}</span>
+                <span v-if="i == 2" class="item-label"
+                  >Your are in 3rd place</span
+                >
               </span>
               <span class="row-value">{{ item.energy_produced }}</span>
-              <span class="row-value">{{ item.energy_consumed }}</span>
+              <span class="row-value">{{ item.energy_donated }}</span>
               <span class="row-value">{{ item.consumers }}</span>
             </div>
           </div>
         </div>
 
         <div v-else>
-          <iframe src="https://public.tableau.com/views/4PPpostcodevlakkennagemeentelijkeherindeling2018/Sheet1?:display_count=yes&:showVizHome=no&:toolbar=no&:original_view=yes" height="300" style="width:100%;margin-bottom:-24px;z-index:0" frameborder="0" ></iframe>
+          <iframe
+            src="https://public.tableau.com/views/4PPpostcodevlakkennagemeentelijkeherindeling2018/Sheet1?:display_count=yes&:showVizHome=no&:toolbar=no&:original_view=yes"
+            height="300"
+            style="width:100%; margin-bottom:-44px; z-index:0"
+            frameborder="0"
+          ></iframe>
 
           <div class="cell" style="z-index:1;position: relative;">
             <div class="header">
@@ -61,14 +80,23 @@
                 </div> -->
                 <span>{{ getZipCode() }}</span>
               </span>
-              <span class="row-value">{{ Math.round(item.energy_produced / 100) }}</span>
-              <span class="row-value">{{ Math.round(item.energy_consumed / 100) }}</span>
-              <span class="row-value">{{ Math.round( 100 * Math.min(item.energy_consumed / item.energy_produced), 100) }}%</span>
+              <span class="row-value">{{
+                Math.round(item.energy_produced / 100)
+              }}</span>
+              <span class="row-value">{{
+                Math.round(item.energy_consumed / 100)
+              }}</span>
+              <span class="row-value"
+                >{{
+                  Math.round(
+                    100 * Math.min(item.energy_consumed / item.energy_produced),
+                    100
+                  )
+                }}%</span
+              >
             </div>
           </div>
-
         </div>
-
       </div>
     </div>
   </div>
@@ -97,6 +125,11 @@ export default {
     },
     getColor(i) {
       const hue = (i / this.list.length * 360).toFixed(0);
+      if (i == 2) {
+        return {
+          'background-color': `hsl(${hue}deg, 100%, 80%)`,
+        }
+      }
       return {
         'background-color': `hsl(${hue}deg, 100%, 95%)`,
       }
@@ -117,11 +150,12 @@ export default {
           name: k,
           energy_produced: data[k][0].toFixed(2),
           energy_consumed: data[k][1].toFixed(2),
+          energy_donated: (data[k][0] - data[k][1]).toFixed(2),
           consumers: data[k][2],
-        }));
-        list.sort((a, b) => b.energy_produced - a.energy_produced);
+        })).sort((a, b) => b.energy_donated - a.energy_donated);
         this.list = list;
       })
+      .catch(e => console.log(e));
   }
 
 }
@@ -158,6 +192,7 @@ $row: 30px 2fr 1fr 1fr 1fr;
   color: $gray3;
   font-weight: 500;
   padding: 15px 20px;
+  border-left: 3px solid transparent;
 
   .number {
     color: $gray2;
@@ -167,6 +202,12 @@ $row: 30px 2fr 1fr 1fr 1fr;
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    .item-label {
+      color: $gray2;
+      margin-left: 14px;
+      font-size: 0.8em;
+    }
   }
 
   .circle {
@@ -186,11 +227,14 @@ $row: 30px 2fr 1fr 1fr 1fr;
 
 .row:nth-child(even) {
   background-color: hsl(217, 33%, 99%);
-  // background-color: hsl(217, 23%, 99%);
 }
 
 .row:hover {
   background-color: $gray1;
+}
+.row:nth-child(4) {
+  background-color: hsl(217, 53%, 98%);
+  border-left: 3px solid hsl(217, 73%, 60%);
 }
 
 .sub-title {
@@ -202,7 +246,7 @@ $row: 30px 2fr 1fr 1fr 1fr;
 .container-row1 {
   display: flex;
   background: transparent;
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
 
   .container-cell {
     display: flex;
@@ -219,7 +263,18 @@ $row: 30px 2fr 1fr 1fr 1fr;
   }
 
   .cell1 {
-    background: transparent;
+    // background: transparent;
+
+    .block {
+      display: block;
+      height: 32px;
+      width: 100%;
+      opacity: 1;
+      background-color: $bg;
+      transform: translate(0px, -32px);
+      z-index: 2;
+      margin-bottom: -32px;
+    }
   }
 
   .cell2 {

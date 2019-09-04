@@ -36,12 +36,12 @@
 body {
   padding: 0px;
   margin: 0px;
-  background-color: #f9fafb;
+  background-color: $bg;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition-duration: 0.2s;
+  transition-duration: 0.3s;
   transition-property: all;
   transition-timing-function: ease;
 }
