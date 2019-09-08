@@ -105,6 +105,7 @@
 <script>
 
 import SwitchButton from '../components/SwitchButton.vue';
+import { apiUrl } from '../config';
 
 export default {
   name: 'Leaderboard',
@@ -143,7 +144,7 @@ export default {
     }
   },
   mounted() {
-    fetch('/leaderboard')
+    fetch(`${apiUrl}/leaderboard`)
       .then(res => res.ok ? res.json() : Promise.reject())
       .then(data => {
         const list = Object.keys(data).map(k => ({

@@ -49,13 +49,13 @@
 
         <div
           :key="item.index"
-          v-for="item in progress"
+          v-for="( item, index ) in progress"
           class="progress-wrapper prediction"
         >
           <div
-            :style="{ 'max-width': `${item.Coverage}%` }"
+            :style="{ 'max-width': `${item.Coverage + 5}%` }"
             class="progress"
-            id="prediction1"
+            :id="'prediction' + (index + 1)"
           >
             {{ item.month }}
           </div>
@@ -77,6 +77,7 @@
 
 <script>
 import { setTimeout } from 'timers';
+import { apiUrl } from '../config';
 
 export default {
   name: 'Progress',
@@ -105,7 +106,7 @@ export default {
     }
   },
   mounted() {
-    fetch('/coverage')
+    fetch(`${apiUrl}/coverage`)
       .then(res => res.ok ? res.json() : Promise.reject())
       .then(data => {
         // setTimeout(() => this.showData(data), 2000)
@@ -229,19 +230,21 @@ export default {
 
   &#prediction1 {
     background-color: #69d8d4;
-    max-width: 67%;
     animation-delay: 0.2s;
   }
   &#prediction2 {
-    // background-color: #84dbd8;
     background-color: #69d8d4;
-    max-width: 74%;
     animation-delay: 0.4s;
+  }
+  &#prediction3 {
+    background-color: #69d8d4;
+    animation-delay: 0.6s;
   }
 }
 
 h4 {
   font-weight: 600;
+  margin-top: 12px;
 }
 
 .progress-wrapper {
