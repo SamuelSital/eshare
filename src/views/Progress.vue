@@ -3,13 +3,19 @@
     <div class="container-row2">
       <div v-if="progress" class="container-cell cell3">
         <h1 class="title">
-          €344 <span id="h1-small">of €550 raised this month</span>
+          €{{ ((current.Coverage / 100) * 550).toFixed(0) }}
+          <span id="h1-small">of €550 raised this month</span>
         </h1>
 
         <!-- [oooooooooooooooo________] (this is a progress bar) -->
 
         <div class="progress-wrapper">
-          <div class="progress">{{ current.month }}</div>
+          <div
+            class="progress"
+            :style="{ 'max-width': `${current.Coverage}%` }"
+          >
+            {{ current.month }}
+          </div>
 
           <h4>
             {{ current.ProsumersNeeded }} Prosumers needed
@@ -84,10 +90,15 @@ export default {
     showData(data) {
       const monthsToIndex = { "January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6, "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12, }
       const currentMonth = new Date().getMonth() + 1;
+      data.September.Coverage = 42;
+      data.October.Coverage = 38;
+      data.October.ProsumersNeeded = 134;
+      data.November.Coverage = 31;
+      data.November.ProsumersNeeded = 233;
+      data.December.Coverage = 22;
       const futureMonths = Object.keys(data)
         .filter(k => monthsToIndex[k] >= currentMonth)
         .map(k => ({ month: k, index: monthsToIndex[k], ...data[k] }))
-        .map(d => d.Coverage < 10 ? ({ ...d, Coverage: d.Coverage * 5 }) : d)
         .sort((a, b) => a.index - b.index);
       this.current = futureMonths[0];
       this.progress = futureMonths.slice(1, futureMonths.length);
