@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="container-row2">
-      <div class="container-cell cell3">
+      <div v-if="progress" class="container-cell cell3">
         <h1 class="title">
           €344 <span id="h1-small">of €550 raised this month</span>
         </h1>
@@ -9,11 +9,11 @@
         <!-- [oooooooooooooooo________] (this is a progress bar) -->
 
         <div class="progress-wrapper">
-          <div class="progress">September</div>
+          <div class="progress">{{ current.month }}</div>
 
           <h4>
-            11 Supporters &nbsp;&nbsp;&nbsp;&nbsp; 16 Recipients
-            &nbsp;&nbsp;&nbsp;&nbsp; 62% coverage
+            {{ current.ProsumersNeeded }} Prosumers needed
+            &nbsp;&nbsp;&nbsp;&nbsp; {{ current.Coverage }}% coverage
           </h4>
         </div>
 
@@ -34,33 +34,34 @@
             <a href="">www.enershare.eu/referral?id=8DSfdLdska3</a> &nbsp;<span class="copyButton"> <i class="fa fa-copy"></i> Copy</span>
           </div> -->
         <div class="link-wrapper">
-          <a class="link" href="">www.enershare/referral?id=8DSfdLdska3</a>
+          <a class="link" href="">www.enershare.com/referral?id=8DSfdLdska3</a>
           <div class="link-copy" href="#"><i class="fa fa-copy"></i></div>
         </div>
         <!-- <p>Let's solve energy poverty together!</p> -->
 
         <h2>Predictions</h2>
 
-        <div class="progress-wrapper prediction">
-          <div class="progress" id="prediction1">November</div>
+        <div
+          :key="item.index"
+          v-for="item in progress"
+          class="progress-wrapper prediction"
+        >
+          <div
+            :style="{ 'max-width': `${item.Coverage}%` }"
+            class="progress"
+            id="prediction1"
+          >
+            {{ item.month }}
+          </div>
           <h4>
-            14 Supporters &nbsp;&nbsp;&nbsp;&nbsp; 19 Recipients
-            &nbsp;&nbsp;&nbsp;&nbsp; 67% coverage
-          </h4>
-        </div>
-
-        <br />
-
-        <div class="progress-wrapper prediction">
-          <div class="progress" id="prediction2">December</div>
-          <h4>
-            16 Supporters &nbsp;&nbsp;&nbsp;&nbsp; 21 Recipients
-            &nbsp;&nbsp;&nbsp;&nbsp; 74% coverage
+            {{ item.ProsumersNeeded }} Prosumers needed &nbsp;&nbsp;&nbsp;&nbsp;
+            {{ item.Coverage }}% Coverage
           </h4>
         </div>
       </div>
-      <div class="container-cell cell4">
-        <!-- <Consumers /> -->
+
+      <div v-else class="container-cell cell4">
+        loading
       </div>
     </div>
   </div>
@@ -70,6 +71,33 @@
 
 export default {
   name: 'Progress',
+  data() {
+    return {
+      current: null,
+      progress: null,
+    }
+  },
+  methods: {
+    showData(data) {
+      const monthsToIndex = { "January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6, "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12, }
+      const currentMonth = new Date().getMonth() + 1;
+      const futureMonths = Object.keys(data)
+        .filter(k => monthsToIndex[k] >= currentMonth)
+        .map(k => ({ month: k, index: monthsToIndex[k], ...data[k] }))
+        .map(d => d.Coverage < 10 ? ({ ...d, Coverage: d.Coverage * 5 }) : d)
+        .sort((a, b) => a.index - b.index);
+      this.current = futureMonths[0];
+      this.progress = futureMonths.slice(1, futureMonths.length);
+    }
+  },
+  mounted() {
+    fetch('http://35.204.156.137/coverage')
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(data => {
+        this.showData(data);
+      })
+      .catch(e => console.log(e));
+  }
 }
 </script>
 
@@ -162,7 +190,7 @@ export default {
   background-color: #69d8d4;
   border-radius: 5px;
 
-  animation: 1s ease 0s forwards growProgress;
+  animation: 1s ease-out 0s forwards growProgress;
 
   overflow: hidden;
   color: white;

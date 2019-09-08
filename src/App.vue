@@ -14,9 +14,6 @@
         <router-link to="/progress"
           ><i class="fa fa-clock"></i>Progress</router-link
         >
-        <router-link to="/about"
-          ><i class="icon2 fa fa-user"></i>Account</router-link
-        >
         <router-link to="/settings"
           ><i class="fa fa-cog"></i>Settings</router-link
         >

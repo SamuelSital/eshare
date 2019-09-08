@@ -42,7 +42,7 @@
                 </div>
                 <span>{{ item.name }}</span>
                 <span v-if="i == 2" class="item-label"
-                  >Your are in 3rd place</span
+                  >You are in 3rd place</span
                 >
               </span>
               <span class="row-value">{{ item.energy_produced }}</span>
