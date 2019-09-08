@@ -40,7 +40,7 @@
             <a href="">www.enershare.eu/referral?id=8DSfdLdska3</a> &nbsp;<span class="copyButton"> <i class="fa fa-copy"></i> Copy</span>
           </div> -->
         <div class="link-wrapper">
-          <a class="link" href="">www.enershare.com/referral?id=8DSfdLdska3</a>
+          <a class="link" href="">www.enershare.eu/referral?id=8DSfdLdska3</a>
           <div class="link-copy" href="#"><i class="fa fa-copy"></i></div>
         </div>
         <!-- <p>Let's solve energy poverty together!</p> -->
