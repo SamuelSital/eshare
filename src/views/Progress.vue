@@ -61,13 +61,16 @@
       </div>
 
       <div v-else class="container-cell cell4">
-        loading
+        <div class="loading">
+          <i class="fa fa-spin fa-circle-notch fa-1x" /> Loading...
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { setTimeout } from 'timers';
 
 export default {
   name: 'Progress',
@@ -94,7 +97,7 @@ export default {
     fetch('http://35.204.156.137/coverage')
       .then(res => res.ok ? res.json() : Promise.reject())
       .then(data => {
-        this.showData(data);
+        setTimeout(() => this.showData(data), 2000)
       })
       .catch(e => console.log(e));
   }
@@ -130,6 +133,18 @@ export default {
   grid-gap: 20px;
   grid-template-columns: 1fr 450px;
   color: $gray3;
+
+  .cell4 {
+    width: 100%;
+    margin-left: 20px;
+    background: #ffffff;
+    border: 1px solid #f5f9ff;
+    box-shadow: 0 5px 11px -3px #eceff3;
+    padding: 20px;
+    border-radius: 5px;
+    color: $gray2;
+    text-align: center;
+  }
 
   .cell3 {
     width: 100%;
