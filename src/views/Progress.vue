@@ -94,10 +94,11 @@ export default {
     }
   },
   mounted() {
-    fetch('http://35.204.156.137/coverage')
+    fetch('/coverage')
       .then(res => res.ok ? res.json() : Promise.reject())
       .then(data => {
-        setTimeout(() => this.showData(data), 2000)
+        // setTimeout(() => this.showData(data), 2000)
+        this.showData(data)
       })
       .catch(e => console.log(e));
   }

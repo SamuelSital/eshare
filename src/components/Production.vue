@@ -55,7 +55,7 @@ export default {
       }
       return this.showData(labels, data);
     }
-    fetch('http://35.204.156.137/producer_history')
+    fetch('/producer_history')
       .then(res => res.ok ? res.json() : Promise.reject())
       .then(res => {
         let production = res.reverse().slice(0, 31).reverse();

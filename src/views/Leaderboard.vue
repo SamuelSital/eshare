@@ -143,7 +143,7 @@ export default {
     }
   },
   mounted() {
-    fetch('http://35.204.156.137/leaderboard')
+    fetch('/leaderboard')
       .then(res => res.ok ? res.json() : Promise.reject())
       .then(data => {
         const list = Object.keys(data).map(k => ({
