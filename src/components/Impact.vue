@@ -5,27 +5,27 @@
     <div class="impact-grid">
       <div class="impact-number">
         <div class="impact-wrapper">
-          <span class="large-value">2</span>
+          <span class="large-value">5</span>
           <span class="label">Consumers</span>
         </div>
       </div>
       <div class="impact-number">
         <div class="impact-wrapper">
-          <span class="large-value">160</span>
+          <span class="large-value">300</span>
           <span class="small-label">kWh</span>
           <span class="label">Donated</span>
         </div>
       </div>
       <div class="impact-number">
         <div class="impact-wrapper">
-          <span class="large-value">540</span>
+          <span class="large-value">140</span>
           <span class="small-label">hours</span>
           <span class="label">Sun hours</span>
         </div>
       </div>
       <div class="impact-number">
         <div class="impact-wrapper">
-          <span class="large-value">310</span>
+          <span class="large-value">890</span>
           <span class="small-label">kWh</span>
           <span class="label">Consumed</span>
         </div>

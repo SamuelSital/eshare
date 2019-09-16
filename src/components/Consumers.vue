@@ -10,7 +10,12 @@
       </div>
       <div class="list-wrapper">
         <div :key="item.id" v-for="item in list" class="list-item">
-          <span>{{ item.name }}</span>
+          <span>
+            <div class="user-icon">
+              <i class="fa fa-user"></i>
+            </div>
+            {{ item.name }}</span
+          >
           <span>{{ item.share }}</span>
           <span>{{ item.energy }}</span>
         </div>
@@ -27,11 +32,11 @@ export default {
   data() {
     return {
       list: [
-        { name: 'Donald Trump', share: 4, energy: 53, id: 1, },
-        { name: 'Donald Trump', share: 4, energy: 53, id: 2, },
-        { name: 'Donald Trump', share: 4, energy: 53, id: 3, },
-        { name: 'Donald Trump', share: 4, energy: 53, id: 4, },
-        { name: 'Donald Trump', share: 4, energy: 53, id: 5, },
+        { name: 'Rachel Smith', share: 4, energy: 12, id: 1, },
+        { name: 'Ella Hardin', share: 21, energy: 63, id: 2, },
+        { name: 'Brian Stutzman', share: 34, energy: 102, id: 3, },
+        { name: 'Kara Phillips', share: 5, energy: 15, id: 4, },
+        { name: 'Richard Morgan', share: 36, energy: 108, id: 5, },
         // { name: 'Donald Trump', share: 4, energy: 53, id: 5, },
       ]
     }
@@ -54,7 +59,6 @@ $table: 2fr 1fr 1fr;
   border: 1px solid #f5f9ff;
   box-shadow: 0 5px 11px -3px #eceff3;
   border-radius: 5px;
-  // padding: 10px 0px;
   height: 100%;
 }
 
@@ -73,10 +77,29 @@ $table: 2fr 1fr 1fr;
 .list-item {
   display: grid;
   grid-template-columns: $table;
-  padding: 15px 20px;
+  padding: 12px 20px;
   color: hsl(217, 13%, 46%);
   font-weight: 500;
   font-size: 0.8em;
+
+  span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .user-icon {
+    background-color: hsl(217, 33%, 95%);
+    color: hsl(217, 23%, 75%);
+    font-size: 0.8em;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    margin-right: 10px;
+  }
 }
 
 .list-item:hover {

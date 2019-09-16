@@ -7,6 +7,11 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "vue": {
+    "devServer": {
+      "proxy": "http://35.204.156.137"
+    }
+  },
   "dependencies": {
     "chart.js": "^2.8.0",
     "core-js": "^2.6.5",

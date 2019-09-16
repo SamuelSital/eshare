@@ -15,6 +15,7 @@
 import BarChart from './BarChart';
 import Loader from './Loader';
 import { Promise } from 'q';
+import { apiUrl } from '../config';
 
 export default {
   name: 'Production',
@@ -22,7 +23,6 @@ export default {
   },
   components: {
     BarChart,
-    Loader,
   },
   data() {
     return {
@@ -56,7 +56,7 @@ export default {
       }
       return this.showData(labels, data);
     }
-    fetch('http://35.204.156.137/producer_history')
+    fetch(`${apiUrl}/producer_history`)
       .then(res => res.ok ? res.json() : Promise.reject())
       .then(res => {
         let production = res.reverse().slice(0, 31).reverse();

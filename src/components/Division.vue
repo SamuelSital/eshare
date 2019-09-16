@@ -5,8 +5,8 @@
 
     <div class="cell">
       <svg
-        width="618px"
-        height="195px"
+        width="618"
+        height="195"
         viewBox="0 0 698 236"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -25,14 +25,14 @@
           >
             <g id="Group-3" transform="translate(873.000000, 279.000000)">
               <text
-                id="4560"
+                id="890"
                 font-family="Montserrat-Medium, Montserrat"
                 font-size="23"
                 font-weight="400"
                 letter-spacing="0.4809093"
                 fill="#00D6CF"
               >
-                <tspan x="30" y="91">4560</tspan>
+                <tspan x="30" y="91">890</tspan>
               </text>
               <text
                 id="kWh"
@@ -46,17 +46,17 @@
               </text>
               <g
                 id="Group-8"
-                transform="translate(583.000000, 26.000000)"
+                transform="translate(577.000000, 26.000000)"
                 font-family="Montserrat-Medium, Montserrat"
                 font-weight="400"
               >
                 <text
-                  id="160"
+                  id="300"
                   font-size="23"
                   letter-spacing="0.4809093"
                   fill="#00D6CF"
                 >
-                  <tspan x="0" y="66">160</tspan>
+                  <tspan x="0" y="66">300</tspan>
                 </text>
                 <text
                   id="kWh-Copy"
@@ -64,15 +64,15 @@
                   letter-spacing="0.2927274"
                   fill="#A6ADB7"
                 >
-                  <tspan x="43" y="66">kWh</tspan>
+                  <tspan x="49" y="66">kWh</tspan>
                 </text>
                 <text
-                  id="12%"
+                  id="34%"
                   font-size="18"
                   letter-spacing="0.3763638"
                   fill="#00D6CF"
                 >
-                  <tspan x="44" y="17">12%</tspan>
+                  <tspan x="45" y="17">34%</tspan>
                 </text>
               </g>
               <g id="Group-2" transform="translate(0.000000, 109.000000)">
@@ -118,14 +118,14 @@
                 ></rect>
               </g>
               <text
-                id="78%"
+                id="66%"
                 font-family="Montserrat-Medium, Montserrat"
                 font-size="18"
                 font-weight="400"
                 letter-spacing="0.3763638"
                 fill="#00D6CF"
               >
-                <tspan x="30" y="42">78%</tspan>
+                <tspan x="30" y="42">66%</tspan>
               </text>
             </g>
             <text
@@ -144,14 +144,14 @@
               font-family="Montserrat-Medium, Montserrat"
               font-weight="400"
             >
-              <g id="Group-5" transform="translate(27.000000, 0.000000)">
+              <g id="Group-5" transform="translate(37.000000, 0.000000)">
                 <text
-                  id="4720"
+                  id="1190"
                   font-size="30"
                   letter-spacing="0.627273"
                   fill="#00D6CF"
                 >
-                  <tspan x="0" y="29">4720</tspan>
+                  <tspan x="0" y="29">1190</tspan>
                 </text>
                 <text
                   id="kWh-Copy-2"
@@ -159,7 +159,7 @@
                   letter-spacing="0.2927274"
                   fill="#A6ADB7"
                 >
-                  <tspan x="81" y="29">kWh</tspan>
+                  <tspan x="67" y="29">kWh</tspan>
                 </text>
               </g>
               <text
